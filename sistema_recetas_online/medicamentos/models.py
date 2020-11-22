@@ -5,6 +5,9 @@ from django.db import models
 class Tipo_Medicamento(models.Model):
     id_Tipo_Medicamento = models.AutoField(primary_key=True)
     Nombre_Tipo_Medicamento = models.CharField(max_length=150,verbose_name="Nombre tipo medicamento")
+    
+    def __str__(self):
+        return u'{0}'.format(self.Nombre_Tipo_Medicamento)
 
 class Medicamentos(models.Model):
     id_Medicamento = models.AutoField(primary_key=True)
@@ -15,6 +18,11 @@ class Medicamentos(models.Model):
     Gramaje = models.IntegerField(verbose_name="Gramaje")
     id_Tipo_medicamento = models.ForeignKey(Tipo_Medicamento, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return u'{0}'.format(self.Nombre)
+
+    
+    
 
 class Info_Medicamentos(models.Model):
     id_Informacion = models.OneToOneField(Medicamentos, on_delete=models.CASCADE,primary_key=True)
@@ -23,6 +31,9 @@ class Info_Medicamentos(models.Model):
     Indicaciones = models.CharField(max_length=250,verbose_name="Indicaciones")
     Contra_Indicaciones = models.CharField(max_length=250, verbose_name="Contra indicaciones")
     Bioequivalente = models.BooleanField(verbose_name="Bioequivalente")
+
+    def __str__(self):
+        return u'{0}'.format(self.id_Informacion)
 
 
 
