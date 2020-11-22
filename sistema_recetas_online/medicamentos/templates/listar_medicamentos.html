@@ -3,7 +3,73 @@
 {% load static %}
 
 
-<h1>Listar_medicamentos</h1>
+<main class="container-fluid bg-white">
+    <!-- titulo del modulo -->
+    <h1>Listado de medicamentos</h1>
+    <div class="row bg-white">
+    <!-- ventana izquierda -->
+        <div class="col-sm border border-dark rounded ml-3 mr-3 mb-3">            
+            <h1>Configuracion</h1>
+            <!-- ventana primeros dos parametros uno al lado de otro -->
+            <div class="row">
+                <div class="form-group col mb-3">
+                    <label for="Nombre_Medicamento text-center">Nombre Medicamento</label>
+                    <input type="Buscar" class="form-control" id="BuscarNombreMedicamento">
+                </div>
+                <div class="form-group col mb-3">
+                    <label for="Miligramos">Miligramos Aceptados</label>
+                    <select name="S_Miligramos" id="Sel_Miligramos" class="form-control">
+                        <!-- falta implementar lectura de tabla de miligramos -->
+                        <option>opcion 1</option>
+                        <option>opcion 2</option>
+                        <option>opcion 3</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Formato dosis  -->
+            <div class="form-group col mb-3">
+                <div class="form-group col mb-3">
+                    <label for="Dosis">Formato Dosis</label>
+                    <select name="S_Dosis" id="Sel_Dosis" class="form-control">
+                        <!-- falta implementar lectura de tabla de miligramos -->
+                        <option>opcion 1</option>
+                        <option>opcion 2</option>
+                        <option>opcion 3</option>
+                    </select>
+                </div>
+            </div>
+            <!-- ventana Compuesto Principal -->
+            <div class="form-group col mb-3">
+                <label for="Compuestos">Compuesto Principal</label>
+                <select name="S_Compuesto" id="Sel_Compuesto" class="form-control">
+                    <!-- falta implementar lectura de tabla de miligramos -->
+                    <option>opcion 1</option>
+                    <option>opcion 2</option>
+                    <option>opcion 3</option>
+                </select>
+            </div>
+            <!-- ventana Compuesto Secundario -->
+            <div class="form-group col mb-3">
+                <label for="Compuestos">Compuesto Secundario</label>
+                <select name="S_Compuesto2" id="Sel_Compuesto2" class="form-control">
+                    <!-- falta implementar lectura de tabla de miligramos -->
+                    <option>opcion 1</option>
+                    <option>opcion 2</option>
+                    <option>opcion 3</option>
+                </select>
+            </div>
+            <!-- ventana Activo -->
+            <div class="form-check col mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="Check_Medicamento">
+                <label class="form-check-label" for="Activo">Activo </label>
+            </div>
+
+        </div>
+        <div class="col-sm border border-dark rounded mr-3 mb-3">
+            <h1>datos</h1>
+        </div>
+    </div>
+</main>
 
 
 {% endblock %}
