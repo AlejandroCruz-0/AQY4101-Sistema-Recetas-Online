@@ -17,6 +17,7 @@ class Medicamentos(models.Model):
     Cantidad_de_comprimidos = models.IntegerField(verbose_name="Cantidad de comprimidos")
     Gramaje = models.IntegerField(verbose_name="Gramaje")
     id_Tipo_medicamento = models.ForeignKey(Tipo_Medicamento, on_delete=models.CASCADE)
+    Habilitado = models.BooleanField(default=True,verbose_name="Medicamento Habilitado")
 
     def __str__(self):
         return u'{0}'.format(self.Nombre)

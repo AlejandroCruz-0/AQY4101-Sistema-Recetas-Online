@@ -18,6 +18,6 @@ def agregar_medicamento(request):
     return render(request, 'agregar_medicamento.html', {'form': formulario})
 
 def listar_medicamentos(request):
-
-    return render(request, 'listar_medicamentos.html')
+    l_medicamentos = Medicamentos.objects.all()
+    return render(request, 'listar_medicamentos.html',{'medicamentos':l_medicamentos})
     

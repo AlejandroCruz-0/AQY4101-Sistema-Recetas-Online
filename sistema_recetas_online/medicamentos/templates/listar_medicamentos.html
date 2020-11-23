@@ -2,7 +2,6 @@
 {% block content %}
 {% load static %}
 
-
 <main class="container-fluid bg-white">
     <!-- titulo del modulo -->
     <h1>Listado de medicamentos</h1>
@@ -65,8 +64,39 @@
             </div>
 
         </div>
-        <div class="col-sm border border-dark rounded mr-3 mb-3">
+        <div class="col-sm border border-dark rounded mr-3 mb-3 ml-3">
             <h1>datos</h1>
+            <table class="table table-striped">
+                <thead class="thead">
+                <tr class="bg-success">                    
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Laboratorio</th>
+                    <th scope="col">Cantidad Comprimidos</th>
+                    <th scope="col">Gramaje</th>
+                    <th scope="col">Tipo Medicamento</th>
+                    <th scope="col">Habilitado</th>                                   
+                </tr>
+                </thead>
+                <tbody>
+                    {% for m in medicamentos %}
+                    <tr class="text-center">
+                        <th> {{m.Nombre}}</th>
+                        <th> {{m.Marca}}</th>
+                        <th> {{m.Laboratorio}}</th>
+                        <th> {{m.Cantidad_de_comprimidos}}</th>
+                        <th> {{m.Gramaje}}</th>
+                        <th> {{m.id_Tipo_medicamento}}</th>
+                        {% if m.Habilitado %}
+                        <th>Si</th>
+                        {% else %}
+                        <th>No</th>
+                        {% endif %}
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </main>
