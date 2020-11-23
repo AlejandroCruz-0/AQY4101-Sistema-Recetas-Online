@@ -6,77 +6,78 @@
     <!-- titulo del modulo -->
     <h1>Listado de medicamentos</h1>
     <div class="row bg-white">
-    <!-- ventana izquierda -->
-        <div class="col-sm border border-dark rounded ml-3 mr-3 mb-3">            
+        <!-- ventana izquierda -->
+        <div class="col-sm border border-dark rounded ml-3 mr-3 mb-3">
             <h1>Configuracion</h1>
             <!-- ventana primeros dos parametros uno al lado de otro -->
-            <div class="row">
-                <div class="form-group col mb-3">
-                    <label for="Nombre_Medicamento text-center">Nombre Medicamento</label>
-                    <input type="Buscar" class="form-control" id="BuscarNombreMedicamento">
+            <form method="post" class="post-form">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <div class="form-group col mb-3">
+                        <label for="Nombre_Medicamento text-center">Nombre Medicamento</label>
+                        <input type="text" class="form-control" id="BuscarNombreMedicamento">
+                    </div>
+                    <div class="form-group col mb-3">
+                        <label for="Marcas">Marca</label>
+                        <input type="text" class="form-control" id="MarcaMedicamento">
+                    </div>
                 </div>
+                <!-- Formato dosis  -->
                 <div class="form-group col mb-3">
-                    <label for="Miligramos">Miligramos Aceptados</label>
-                    <select name="S_Miligramos" id="Sel_Miligramos" class="form-control">
-                        <!-- falta implementar lectura de tabla de miligramos -->
-                        <option>opcion 1</option>
-                        <option>opcion 2</option>
-                        <option>opcion 3</option>
-                    </select>
+                    <label for="Laboratorios">Laboratorio</label>
+                    <input type="text" class="form-control" id="LaboratorioMedicamento">
                 </div>
-            </div>
-            <!-- Formato dosis  -->
-            <div class="form-group col mb-3">
+                <!-- ventana Compuesto Principal -->
                 <div class="form-group col mb-3">
-                    <label for="Dosis">Formato Dosis</label>
-                    <select name="S_Dosis" id="Sel_Dosis" class="form-control">
-                        <!-- falta implementar lectura de tabla de miligramos -->
-                        <option>opcion 1</option>
-                        <option>opcion 2</option>
-                        <option>opcion 3</option>
-                    </select>
+                    <label for="Cantidad_Comprimidos">Cantidad de Comprimidos</label>
+                    <input type="text" class="form-control" id="CantidadComprimidos">
                 </div>
-            </div>
-            <!-- ventana Compuesto Principal -->
-            <div class="form-group col mb-3">
-                <label for="Compuestos">Compuesto Principal</label>
-                <select name="S_Compuesto" id="Sel_Compuesto" class="form-control">
-                    <!-- falta implementar lectura de tabla de miligramos -->
-                    <option>opcion 1</option>
-                    <option>opcion 2</option>
-                    <option>opcion 3</option>
-                </select>
-            </div>
-            <!-- ventana Compuesto Secundario -->
-            <div class="form-group col mb-3">
-                <label for="Compuestos">Compuesto Secundario</label>
-                <select name="S_Compuesto2" id="Sel_Compuesto2" class="form-control">
-                    <!-- falta implementar lectura de tabla de miligramos -->
-                    <option>opcion 1</option>
-                    <option>opcion 2</option>
-                    <option>opcion 3</option>
-                </select>
-            </div>
-            <!-- ventana Activo -->
-            <div class="form-check col mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="Check_Medicamento">
-                <label class="form-check-label" for="Activo">Activo </label>
-            </div>
+                <!-- ventana Compuesto Secundario -->
+                <div class="form-group col mb-3">
+                    <label for="Gramaje">Gramaje</label>
+                    <input type="text" class="form-control" id="GramajeMedicamento">
+                </div>
+                <!-- ventana Tipo Medicamento -->
+                <div class="form-group col mb-3">
+                    <label for="Tipo_Medicamentos">Tipo Medicamentos</label>
+                    <select name="tipo_medicamentos" class="form-control">
+                        {% for det in detalle_med %}
+                        <option value="{{det.id_Tipo_Medicamento}}"> {{det.Nombre_Tipo_Medicamento}} </option>
+                        {% endfor %}
+                    </select>                 
+                    
+                </div>
+                <!-- ventana Activo -->
+                <div class="form-check col mb-3">
+                    <div class="mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="Check_Medicamento">
+                        <label class="form-check-label" for="Activo">Activo </label>
+                    </div>
+                    
+                </div>
+                <div class="mb-3">
+                    <button type="button" id="Modificar" class="btn btn-success">Modificar</button>
+                </div>
+                
+
+
+            </form>
 
         </div>
         <div class="col-sm border border-dark rounded mr-3 mb-3 ml-3">
             <h1>datos</h1>
             <table class="table table-striped">
                 <thead class="thead">
-                <tr class="bg-success">                    
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Laboratorio</th>
-                    <th scope="col">Cantidad Comprimidos</th>
-                    <th scope="col">Gramaje</th>
-                    <th scope="col">Tipo Medicamento</th>
-                    <th scope="col">Habilitado</th>                                   
-                </tr>
+                    <tr class="bg-success">
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Laboratorio</th>
+                        <th scope="col">Cantidad Comprimidos</th>
+                        <th scope="col">Gramaje</th>
+                        <th scope="col">Tipo Medicamento</th>
+                        <th scope="col">Habilitado</th>
+                        <th scope="col"></th>
+                    </tr>
                 </thead>
                 <tbody>
                     {% for m in medicamentos %}
@@ -92,7 +93,7 @@
                         {% else %}
                         <th>No</th>
                         {% endif %}
-
+                        <th><button type="button" id="limpiar-btn" class="btn btn-success">Modificar</button></th>
                     </tr>
                     {% endfor %}
                 </tbody>
