@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+
+<main class="container-fluid">
+
+  <section class="container-fluid">
+    <div class="row mt-5">
+      <div class="col-lg-8 col-md-6 col-sm-12 mx-auto">
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="card">
+            <div class="card-header bg-warning text-center">
+              <h3 class="titulo_ingreso animate__animated animate__jackInTheBox">Agregar tipo Medicamento</h3>
+            </div>
+            <div class="card-body">
+              <div id="erroresdiv"></div>
+
+              <div class="form-group mb-4">
+
+                {{form.Nombre_Tipo_Medicamento}}
+                {{form.Nombre_Tipo_Medicamento.errores}}
+
+              </div>
+
+
+
+
+
+            </div>
+            <div class="card-footer">
+              <div class="float-left">
+                <input id="submit" type="submit" class="btn btn-primary" value="Ingresar Tipo medicamento">
+              </div>
+              <div class="float-right">
+                <button type="button" id="limpiar-btn" class="btn btn-success">Limpiar</button>
+              </div>
+            </div>
+          </div>
+
+      </div>
+      </form>
+
+
+    </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-lg-8 col-md-6 col-sm-12 mx-auto">
+        <div class="table-responsive">
+          <table class="table table-warning table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tipo Medicamento</th>
+                <th class="text-cente" scope="col" colspan=2>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            {% for tm in tipo_medicamentos %}
+
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{tm.Nombre_Tipo_Medicamento}}</td>
+                <td><a class="nav-link" href={% url 'tipo_medicamentos_mod' tm.pk %}><i class="fas fa-edit"></i> </a></td>
+                <td><a class="nav-link" href={% url 'tipo_medicamentos_borrar' tm.pk %}><i class="fas fa-trash"></i> </a></td>
+                
+              </tr>
+
+            
+            {% endfor %}
+
+
+              
+
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+
+{% endblock %}

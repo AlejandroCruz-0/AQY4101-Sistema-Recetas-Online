@@ -31,7 +31,7 @@ class Info_Medicamentos(models.Model):
     Advertencias = models.CharField(max_length=250,verbose_name="Advertencias")
     Indicaciones = models.CharField(max_length=250,verbose_name="Indicaciones")
     Contra_Indicaciones = models.CharField(max_length=250, verbose_name="Contra indicaciones")
-    Bioequivalente = models.BooleanField(verbose_name="Bioequivalente")
+    Bioequivalente = models.BooleanField(default=True,verbose_name="Bioequivalente")
 
     def __str__(self):
         return u'{0}'.format(self.id_Informacion)

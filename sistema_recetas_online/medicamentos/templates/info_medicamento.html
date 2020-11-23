@@ -5,62 +5,58 @@
 
 <main class="container-fluid">
     <section class="bg-dark p-5 bg-gradient text-center text-white">
-        <h1>Agregar Medicamento</h1>
+        <h1>Info Medicamento</h1>
     </section>
     <section class="container-fluid">
         <div class="row mt-5">
             <div class="col-lg-8 col-md-6 col-sm-12 mx-auto">
-            <form method="post">
+
+                 <form method="post">
             {% csrf_token %}
 
           <div class="card">
               <div class="card-header bg-warning text-center">
-                <h3 class="titulo_ingreso animate__animated animate__jackInTheBox" >Agregar Medicamento</h3>
+                <h3 class="titulo_ingreso animate__animated animate__jackInTheBox" >Info Medicamento {{medicamento_id}}</h3>
               </div>
               <div class="card-body">
                 <div id="erroresdiv"></div>
                 <div class="form-group mb-4">                 
                   
-                  {{form.Nombre}}
-                  {{form.Nombre.errores}}                  
+                  {{form.Formula}}
+                  {{form.Formula.errores}}                  
                   
                 </div>
 
                 <div class="form-group mb-4">                 
-                  {{form.Marca}}
-                  {{form.Marca.errores}}                  
+                  {{form.Advertencias}}
+                  {{form.Advertencias.errores}}                  
                   <div class="invalid-feedback"></div>
                 </div>
 
                 <div class="form-group mb-4">                  
-                  {{form.Laboratorio}}
-                  {{form.Laboratorio.errores}}                  
+                  {{form.Indicaciones}}
+                  {{form.Indicaciones.errores}}                  
                 </div>
 
                 <div class="form-group mb-4">                 
-                  {{form.Cantidad_de_comprimidos}}
-                  {{form.Cantidad_de_comprimidos.errores}}                
+                  {{form.Contra_Indicaciones}}
+                  {{form.Contra_Indicaciones.errores}}                
                   
                 </div>
 
-                <div class="form-group mb-4">                 
-                  {{form.Gramaje}}
-                  {{form.Gramaje.errores}}                
-                  
-                </div>
-
-                <div class="form-group mb-4">                 
-                  {{form.id_Tipo_medicamento}}
-                  {{form.id_Tipo_medicamento.errores}}                
-                  
-                </div>
+               <div class="form-check form-switch">
+                {{form.Bioequivalente}}
+                  {{form.Bioequivalente.errores}}   
+  
+                <label class="form-check-label" for="bioequivalente-chkbox">Bioequivalente</label> 
+</div>
 
 
               
               </div>
               <div class="card-footer">
                 <div class="float-left">
-                  <input id="submit" type="submit" class="btn btn-primary" value="Ingresar Medicamento" >                   
+                  <input id="submit" type="submit" class="btn btn-primary" value="Ingresar Tipo de medicamento" >                   
               </div>
               <div class="float-right">
                   <button type="button" id="limpiar-btn" class="btn btn-success">Limpiar</button>
@@ -69,13 +65,12 @@
             </div>
 
           </div>
-          </form>             
-
+          </form>       
 
             </div>
         </div>
     </section>
 </main>
 
-<script src={% static 'medicamentos/js/init.js' %}></script>
+
 {% endblock %}
