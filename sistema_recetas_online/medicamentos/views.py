@@ -63,12 +63,16 @@ def info_medicamento(request, medicamento_id):
 
     formulario = FormInfo_Medicamento()
 
+
     if request.method == 'POST':
         #Solicitud post rellenar formulario
+        medicamento = Medicamentos.objects.get(id_Medicamento=medicamento_id)
         formulario = FormInfo_Medicamento(data=request.POST)
 
         if formulario.is_valid():
-            formulario.save()
+            info_med = formulario.save(commit=False)
+            info_med.pk = medicamento.pk
+            info_med.save()
             return redirect(reverse('listar_medicamentos'))
 
 
@@ -83,7 +87,23 @@ def listar_Tipo_Medicamento(request):
 
 def listar_medicamentos(request):
     l_medicamentos = Medicamentos.objects.all()
-    return render(request, 'listar_medicamentos.html',{'medicamentos':l_medicamentos})
+    f = FormAgregarMedicamento()
+    return render(request, 'listar_medicamentos.html',{'medicamentos':l_medicamentos,'form':f})
+
+def modificar_medicamento(request, medicamento_id):
+    l_medicamentos = Medicamentos.objects.all()
+    m = get_object_or_404(Medicamentos,id_Medicamento=medicamento_id)
+    f = FormAgregarMedicamento(instance=m)
+
+    if request.method == 'POST':
+        f = FormAgregarMedicamento(data=request.POST, instance=m)        
+        if f.is_valid():
+            f.save()
+            return redirect(reverse('listar_medicamentos'))
+
+
+    return render(request, 'listar_medicamentos.html',{'medicamentos':l_medicamentos,'form':f})
+
 
 
     

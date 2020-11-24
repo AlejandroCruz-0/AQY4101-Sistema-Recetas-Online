@@ -7,99 +7,118 @@
     <h1>Listado de medicamentos</h1>
     <div class="row bg-white">
         <!-- ventana izquierda -->
-        <div class="col-sm border border-dark rounded ml-3 mr-3 mb-3">
+        <div class="col-lg-4 col-md-6 col-sm-6 border border-dark rounded">
             <h1>Configuracion</h1>
-            <!-- ventana primeros dos parametros uno al lado de otro -->
-            <form method="post" class="post-form">
+
+            <form method="post">
                 {% csrf_token %}
-                <div class="form-group row">
-                    <div class="form-group col mb-3">
-                        <label for="Nombre_Medicamento text-center">Nombre Medicamento</label>
-                        <input type="text" class="form-control" id="BuscarNombreMedicamento">
+
+                <div class="card">
+                    <div class="card-header bg-warning text-center">
+                        <h3 class="titulo_ingreso animate__animated animate__jackInTheBox">Modificar Medicamento</h3>
                     </div>
-                    <div class="form-group col mb-3">
-                        <label for="Marcas">Marca</label>
-                        <input type="text" class="form-control" id="MarcaMedicamento">
-                    </div>
-                </div>
-                <!-- Formato dosis  -->
-                <div class="form-group col mb-3">
-                    <label for="Laboratorios">Laboratorio</label>
-                    <input type="text" class="form-control" id="LaboratorioMedicamento">
-                </div>
-                <!-- ventana Compuesto Principal -->
-                <div class="form-group col mb-3">
-                    <label for="Cantidad_Comprimidos">Cantidad de Comprimidos</label>
-                    <input type="text" class="form-control" id="CantidadComprimidos">
-                </div>
-                <!-- ventana Compuesto Secundario -->
-                <div class="form-group col mb-3">
-                    <label for="Gramaje">Gramaje</label>
-                    <input type="text" class="form-control" id="GramajeMedicamento">
-                </div>
-                <!-- ventana Tipo Medicamento -->
-                <div class="form-group col mb-3">
-                    <label for="Tipo_Medicamentos">Tipo Medicamentos</label>
-                    <select name="tipo_medicamentos" class="form-control">
-                        {% for det in detalle_med %}
-                        <option value="{{det.id_Tipo_Medicamento}}"> {{det.Nombre_Tipo_Medicamento}} </option>
-                        {% endfor %}
-                    </select>                 
-                    
-                </div>
-                <!-- ventana Activo -->
-                <div class="form-check col mb-3">
-                    <div class="mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="Check_Medicamento">
-                        <label class="form-check-label" for="Activo">Activo </label>
-                    </div>
-                    
-                </div>
-                <div class="mb-3">
-                    <button type="button" id="Modificar" class="btn btn-success">Modificar</button>
-                </div>
-                
+                    <div class="card-body">
+                        <div id="erroresdiv"></div>
+                        <div class="form-group mb-4">
+
+                            {{form.Nombre}}
+                            {{form.Nombre.errores}}
+
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {{form.Marca}}
+                            {{form.Marca.errores}}
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {{form.Laboratorio}}
+                            {{form.Laboratorio.errores}}
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {{form.Cantidad_de_comprimidos}}
+                            {{form.Cantidad_de_comprimidos.errores}}
+
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {{form.Gramaje}}
+                            {{form.Gramaje.errores}}
+
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {{form.id_Tipo_medicamento}}
+                            {{form.id_Tipo_medicamento.errores}}
+
+                        </div>
 
 
-            </form>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="float-left">
+                            <input id="submit" type="submit" class="btn btn-primary" value="Modificar Medicamento">
+                        </div>
+                        <div class="float-right">
+                            <button type="button" id="limpiar-btn" class="btn btn-success">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
 
         </div>
-        <div class="col-sm border border-dark rounded mr-3 mb-3 ml-3">
-            <h1>datos</h1>
-            <table class="table table-striped">
-                <thead class="thead">
-                    <tr class="bg-success">
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Laboratorio</th>
-                        <th scope="col">Cantidad Comprimidos</th>
-                        <th scope="col">Gramaje</th>
-                        <th scope="col">Tipo Medicamento</th>
-                        <th scope="col">Habilitado</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for m in medicamentos %}
-                    <tr class="text-center">
-                        <th> {{m.Nombre}}</th>
-                        <th> {{m.Marca}}</th>
-                        <th> {{m.Laboratorio}}</th>
-                        <th> {{m.Cantidad_de_comprimidos}}</th>
-                        <th> {{m.Gramaje}}</th>
-                        <th> {{m.id_Tipo_medicamento}}</th>
-                        {% if m.Habilitado %}
-                        <th>Si</th>
-                        {% else %}
-                        <th>No</th>
-                        {% endif %}
-                        <th><button type="button" id="limpiar-btn" class="btn btn-success">Modificar</button></th>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        </form>
+
+    <!-- ventana primeros dos parametros uno al lado de otro -->
+
+   
+
+
+    <div class="col-lg-8 col-md-6 col-sm-6 border border-dark rounded ">
+        <h1>datos</h1>
+        <table class="table table-striped">
+            <thead class="thead">
+                <tr class="bg-success">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Laboratorio</th>
+                    <th scope="col">Cantidad Comprimidos</th>
+                    <th scope="col">Gramaje</th>
+                    <th scope="col">Tipo Medicamento</th>
+                    <th scope="col">Habilitado</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in medicamentos %}
+                <tr class="text-center">
+                    <th> {{m.Nombre}}</th>
+                    <th> {{m.Marca}}</th>
+                    <th> {{m.Laboratorio}}</th>
+                    <th> {{m.Cantidad_de_comprimidos}}</th>
+                    <th> {{m.Gramaje}}</th>
+                    <th> {{m.id_Tipo_medicamento}}</th>
+                    {% if m.Habilitado %}
+                    <th>Si</th>
+                    {% else %}
+                    <th>No</th>
+                    {% endif %}
+                    <th><a href={% url 'modificar_medicamento' m.pk %} class="btn btn-success">Modificar</a></th>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+    </div>
+
+
+
+    
+    
+    
 </main>
 
 
